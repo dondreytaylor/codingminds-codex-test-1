@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111211" />
+    <meta
+      name="description"
+      content="A polished, accessible calculator for everyday calculations."
+    />
+    <title>Calclio — Everyday Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="Calclio home">calclio<span>.</span></a>
+        <p class="eyebrow">Everyday calculator</p>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="section-number">01 — CALCULATE</p>
+          <h1 id="page-title">Simple math,<br /><em>beautifully done.</em></h1>
+          <p class="intro-copy">
+            All the essentials, nothing in the way.<br />Type or tap to get started.
+          </p>
+        </section>
+
+        <section class="calculator-wrap" aria-label="Calculator">
+          <div class="calculator">
+            <div class="display" aria-live="polite" aria-atomic="true">
+              <div class="display-topline">
+                <span class="display-label">CURRENT</span>
+                <span class="memory-indicator" aria-hidden="true">M</span>
+              </div>
+              <div class="expression" id="expression">&nbsp;</div>
+              <div class="result" id="result">0</div>
+            </div>
+
+            <div class="keypad">
+              <button class="key key-function" data-action="clear" aria-label="Clear calculator">AC</button>
+              <button class="key key-function" data-action="sign" aria-label="Toggle positive or negative">+/−</button>
+              <button class="key key-function" data-action="percent" aria-label="Percent">%</button>
+              <button class="key key-operator" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
+
+              <button class="key" data-action="number" data-value="7">7</button>
+              <button class="key" data-action="number" data-value="8">8</button>
+              <button class="key" data-action="number" data-value="9">9</button>
+              <button class="key key-operator" data-action="operator" data-value="×" aria-label="Multiply">×</button>
+
+              <button class="key" data-action="number" data-value="4">4</button>
+              <button class="key" data-action="number" data-value="5">5</button>
+              <button class="key" data-action="number" data-value="6">6</button>
+              <button class="key key-operator" data-action="operator" data-value="−" aria-label="Subtract">−</button>
+
+              <button class="key" data-action="number" data-value="1">1</button>
+              <button class="key" data-action="number" data-value="2">2</button>
+              <button class="key" data-action="number" data-value="3">3</button>
+              <button class="key key-operator" data-action="operator" data-value="+" aria-label="Add">+</button>
+
+              <button class="key key-zero" data-action="number" data-value="0">0</button>
+              <button class="key" data-action="decimal" aria-label="Decimal point">.</button>
+              <button class="key key-equals" data-action="equals" aria-label="Equals">=</button>
+            </div>
+          </div>
+
+          <aside class="keyboard-note" aria-label="Keyboard shortcuts">
+            <span class="note-line"></span>
+            <p><strong>KEYBOARD FRIENDLY</strong><br />Use numbers, operators &amp; Enter</p>
+          </aside>
+        </section>
+      </main>
+
+      <footer>
+        <p>CALCLIO &nbsp;—&nbsp; MADE FOR THE LITTLE THINGS</p>
+        <p>© 2026</p>
+      </footer>
+    </div>
+  </body>
+</html>
