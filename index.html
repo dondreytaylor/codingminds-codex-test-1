@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#111211" />
     <meta
       name="description"
-      content="A polished, accessible calculator for everyday calculations."
+      content="A polished, accessible scientific calculator for everyday calculations."
     />
-    <title>Calclio — Everyday Calculator</title>
+    <title>Calclio — Scientific Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,15 +22,15 @@
     <div class="page-shell">
       <header class="site-header">
         <a class="brand" href="#" aria-label="Calclio home">calclio<span>.</span></a>
-        <p class="eyebrow">Everyday calculator</p>
+        <p class="eyebrow">Scientific calculator</p>
       </header>
 
       <main>
         <section class="intro" aria-labelledby="page-title">
           <p class="section-number">01 — CALCULATE</p>
-          <h1 id="page-title">Simple math,<br /><em>beautifully done.</em></h1>
+          <h1 id="page-title">Big ideas,<br /><em>beautifully solved.</em></h1>
           <p class="intro-copy">
-            All the essentials, nothing in the way.<br />Type or tap to get started.
+            Everyday arithmetic meets scientific precision.<br />Type or tap to get started.
           </p>
         </section>
 
@@ -45,27 +45,52 @@
               <div class="result" id="result">0</div>
             </div>
 
-            <div class="keypad">
+            <div class="scientific-toolbar" aria-label="Scientific settings">
+              <button class="mode-toggle" data-action="angle-mode" aria-label="Switch angle unit">
+                <span class="mode-option is-active" data-mode-label="DEG">DEG</span>
+                <span class="mode-option" data-mode-label="RAD">RAD</span>
+              </button>
+              <span class="toolbar-note">ANGLE MODE</span>
+            </div>
+
+            <div class="keypad scientific-keypad">
+              <button class="key key-scientific" data-action="scientific" data-value="sin" aria-label="Sine">sin</button>
+              <button class="key key-scientific" data-action="scientific" data-value="cos" aria-label="Cosine">cos</button>
+              <button class="key key-scientific" data-action="scientific" data-value="tan" aria-label="Tangent">tan</button>
+              <button class="key key-scientific" data-action="scientific" data-value="log" aria-label="Base ten logarithm">log</button>
+              <button class="key key-scientific" data-action="scientific" data-value="ln" aria-label="Natural logarithm">ln</button>
+
+              <button class="key key-scientific" data-action="scientific" data-value="sqrt" aria-label="Square root">√</button>
+              <button class="key key-scientific" data-action="scientific" data-value="square" aria-label="Square">x²</button>
+              <button class="key key-scientific" data-action="operator" data-value="^" aria-label="Raise to a power">xʸ</button>
+              <button class="key key-scientific" data-action="scientific" data-value="reciprocal" aria-label="Reciprocal">1/x</button>
+              <button class="key key-scientific" data-action="exp" aria-label="Enter scientific exponent">EXP</button>
+
+              <button class="key key-scientific" data-action="constant" data-value="pi" aria-label="Pi">π</button>
+              <button class="key key-scientific" data-action="constant" data-value="e" aria-label="Euler's number">e</button>
               <button class="key key-function" data-action="clear" aria-label="Clear calculator">AC</button>
               <button class="key key-function" data-action="sign" aria-label="Toggle positive or negative">+/−</button>
               <button class="key key-function" data-action="percent" aria-label="Percent">%</button>
-              <button class="key key-operator" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
 
               <button class="key" data-action="number" data-value="7">7</button>
               <button class="key" data-action="number" data-value="8">8</button>
               <button class="key" data-action="number" data-value="9">9</button>
+              <button class="key key-operator" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
               <button class="key key-operator" data-action="operator" data-value="×" aria-label="Multiply">×</button>
 
+              <span class="key-spacer" aria-hidden="true"></span>
               <button class="key" data-action="number" data-value="4">4</button>
               <button class="key" data-action="number" data-value="5">5</button>
               <button class="key" data-action="number" data-value="6">6</button>
               <button class="key key-operator" data-action="operator" data-value="−" aria-label="Subtract">−</button>
 
+              <span class="key-spacer" aria-hidden="true"></span>
               <button class="key" data-action="number" data-value="1">1</button>
               <button class="key" data-action="number" data-value="2">2</button>
               <button class="key" data-action="number" data-value="3">3</button>
               <button class="key key-operator" data-action="operator" data-value="+" aria-label="Add">+</button>
 
+              <span class="key-spacer" aria-hidden="true"></span>
               <button class="key key-zero" data-action="number" data-value="0">0</button>
               <button class="key" data-action="decimal" aria-label="Decimal point">.</button>
               <button class="key key-equals" data-action="equals" aria-label="Equals">=</button>
