@@ -1,14 +1,15 @@
 :root {
   --ink: #171815;
   --muted: #777970;
-  --paper: #f1f0e9;
-  --paper-deep: #e8e6dc;
+  --paper: #eef3ef;
+  --paper-deep: #dfe9e3;
+  --paper-warm: #f6f1e9;
   --calculator: #151614;
   --key: #292a27;
   --key-hover: #353632;
   --function: #c8c5b8;
   --accent: #dfff42;
-  --rule: #cac8bd;
+  --rule: #c7d1ca;
 }
 
 * {
@@ -23,10 +24,13 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   color: var(--ink);
   background:
-    radial-gradient(circle at 73% 29%, rgba(255, 255, 255, 0.72), transparent 28rem),
-    linear-gradient(120deg, var(--paper) 0%, #efeee7 54%, var(--paper-deep) 100%);
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.82), transparent 30rem),
+    radial-gradient(circle at 8% 88%, rgba(246, 241, 233, 0.9), transparent 34rem),
+    linear-gradient(135deg, var(--paper) 0%, #e9f0eb 52%, var(--paper-deep) 100%);
+  background-attachment: fixed;
   font-family: "DM Sans", sans-serif;
 }
 
@@ -38,8 +42,10 @@ a {
 .page-shell {
   width: min(1440px, 100%);
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0 auto;
-  padding: 0 clamp(24px, 5.5vw, 80px);
+  padding-right: max(clamp(24px, 5.5vw, 80px), env(safe-area-inset-right));
+  padding-left: max(clamp(24px, 5.5vw, 80px), env(safe-area-inset-left));
   display: flex;
   flex-direction: column;
 }
@@ -354,6 +360,7 @@ footer {
   main {
     grid-template-columns: 1fr;
     justify-items: center;
+    gap: 48px;
     padding-top: 48px;
   }
 
@@ -368,7 +375,8 @@ footer {
 
 @media (max-width: 520px) {
   .page-shell {
-    padding-inline: 17px;
+    padding-right: max(17px, env(safe-area-inset-right));
+    padding-left: max(17px, env(safe-area-inset-left));
   }
 
   .site-header {
@@ -398,7 +406,8 @@ footer {
   }
 
   .calculator {
-    padding: 17px;
+    width: 100%;
+    padding: clamp(12px, 4.5vw, 17px);
   }
 
   .display {
@@ -410,6 +419,7 @@ footer {
   }
 
   .key {
+    min-height: 48px;
     font-size: 17px;
   }
 
@@ -427,5 +437,35 @@ footer {
 
   footer {
     justify-content: flex-end;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 370px) {
+  main {
+    gap: 30px;
+    padding-top: 30px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .intro-copy {
+    font-size: 13px;
+  }
+
+  .display {
+    min-height: 108px;
+  }
+
+  .keypad {
+    gap: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key {
+    transition: none;
   }
 }
