@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e8eee8" />
+    <meta
+      name="description"
+      content="Solve common algebra, geometry, and finance formulas with Calclio."
+    />
+    <title>Calclio — Formula Solver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Calclio home">calclio<span>.</span></a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="index.html">Calculator</a>
+          <a class="is-active" href="formulas.html" aria-current="page">Formulas</a>
+        </nav>
+      </header>
+
+      <main class="formula-main">
+        <section class="intro formula-intro" aria-labelledby="formula-title">
+          <p class="section-number">02 — FORMULAS</p>
+          <h1 id="formula-title">Choose a formula,<br /><em>then solve.</em></h1>
+          <p class="intro-copy">
+            Enter the values you know, leave one variable blank, and Calclio will calculate the missing piece for common equations.
+          </p>
+        </section>
+
+        <section class="formula-panel" aria-labelledby="solver-title">
+          <div class="formula-card">
+            <div class="formula-card-header">
+              <p class="display-label">FORMULA SOLVER</p>
+              <h2 id="solver-title">Solve for a result</h2>
+            </div>
+
+            <label class="formula-field" for="formula-select">
+              <span>Formula</span>
+              <select id="formula-select">
+                <option value="quadratic">Quadratic roots: ax² + bx + c = 0</option>
+                <option value="linear">Linear equation: ax + b = c</option>
+                <option value="pythagorean">Pythagorean theorem: a² + b² = c²</option>
+                <option value="interest">Simple interest: P × r × t</option>
+              </select>
+            </label>
+
+            <form class="formula-form" id="formula-form" novalidate></form>
+
+            <div class="formula-result" aria-live="polite" aria-atomic="true">
+              <span class="display-label">RESULT</span>
+              <p id="formula-result">Pick a formula and enter values to solve.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>CALCLIO &nbsp;—&nbsp; MADE FOR THE LITTLE THINGS</p>
+        <p>© 2026</p>
+      </footer>
+    </div>
+  </body>
+</html>
