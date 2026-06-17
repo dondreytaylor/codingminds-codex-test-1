@@ -14,7 +14,10 @@ Then open [http://localhost:8000](http://localhost:8000).
 
 ## Features
 
-- Addition, subtraction, multiplication, and division
+- Addition, subtraction, multiplication, division, and exponentiation
+- Trigonometric functions with degree and radian modes
+- Logarithms, square root, square, reciprocal, π, and Euler's number
+- Scientific exponent entry with the `EXP` key
 - Percentage, sign toggle, decimal input, and clear
 - Chained calculations and divide-by-zero handling
 - Full keyboard support, including Enter, Escape, and Backspace
