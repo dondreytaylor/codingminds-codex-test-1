@@ -1,6 +1,9 @@
 const resultDisplay = document.querySelector("#result");
 const expressionDisplay = document.querySelector("#expression");
 const keypad = document.querySelector(".keypad");
+const formulaSelect = document.querySelector("#formula-select");
+const formulaForm = document.querySelector("#formula-form");
+const formulaResult = document.querySelector("#formula-result");
 
 const state = {
   displayValue: "0",
@@ -257,11 +260,13 @@ function handleAction(action, value) {
   updateDisplay();
 }
 
-keypad.addEventListener("click", (event) => {
-  const button = event.target.closest("button");
-  if (!button) return;
-  handleAction(button.dataset.action, button.dataset.value);
-});
+if (keypad) {
+  keypad.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    handleAction(button.dataset.action, button.dataset.value);
+  });
+}
 
 const keyMap = {
   "/": ["operator", "÷"],
@@ -280,6 +285,7 @@ const keyMap = {
 };
 
 document.addEventListener("keydown", (event) => {
+  if (!keypad) return;
   const mapping = /^\d$/.test(event.key) ? ["number", event.key] : keyMap[event.key];
   if (!mapping) return;
 
@@ -296,4 +302,114 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-updateDisplay();
+if (keypad) updateDisplay();
+
+const formulaDefinitions = {
+  quadratic: {
+    fields: [
+      { name: "a", label: "a coefficient" },
+      { name: "b", label: "b coefficient" },
+      { name: "c", label: "c coefficient" },
+    ],
+    solve(values) {
+      const { a, b, c } = values;
+      if (a === 0) return "a cannot be 0 for a quadratic equation.";
+      const discriminant = b ** 2 - 4 * a * c;
+      if (discriminant < 0) return `No real roots. Discriminant = ${formatFormulaNumber(discriminant)}.`;
+      const root = Math.sqrt(discriminant);
+      const x1 = (-b + root) / (2 * a);
+      const x2 = (-b - root) / (2 * a);
+      return discriminant === 0
+        ? `x = ${formatFormulaNumber(x1)}`
+        : `x = ${formatFormulaNumber(x1)} or ${formatFormulaNumber(x2)}`;
+    },
+  },
+  linear: {
+    fields: [
+      { name: "a", label: "a coefficient" },
+      { name: "b", label: "b value" },
+      { name: "c", label: "c value" },
+    ],
+    solve(values) {
+      const { a, b, c } = values;
+      if (a === 0) return "a cannot be 0 because x would be undefined.";
+      return `x = ${formatFormulaNumber((c - b) / a)}`;
+    },
+  },
+  pythagorean: {
+    fields: [
+      { name: "a", label: "side a" },
+      { name: "b", label: "side b" },
+    ],
+    solve(values) {
+      const { a, b } = values;
+      if (a < 0 || b < 0) return "Side lengths must be zero or greater.";
+      return `c = ${formatFormulaNumber(Math.sqrt(a ** 2 + b ** 2))}`;
+    },
+  },
+  interest: {
+    fields: [
+      { name: "principal", label: "principal" },
+      { name: "rate", label: "annual rate (%)" },
+      { name: "time", label: "time (years)" },
+    ],
+    solve(values) {
+      const { principal, rate, time } = values;
+      const interest = principal * (rate / 100) * time;
+      return `Interest = ${formatFormulaNumber(interest)}; total = ${formatFormulaNumber(principal + interest)}`;
+    },
+  },
+};
+
+function formatFormulaNumber(value) {
+  if (!Number.isFinite(value)) return "undefined";
+  return Number.parseFloat(value.toPrecision(10)).toLocaleString("en-US");
+}
+
+function renderFormulaFields() {
+  if (!formulaForm || !formulaSelect) return;
+  const formula = formulaDefinitions[formulaSelect.value];
+  const fields = formula.fields
+    .map(
+      (field) => `
+        <label for="formula-${field.name}">
+          <span>${field.label}</span>
+          <input id="formula-${field.name}" name="${field.name}" type="number" step="any" required />
+        </label>`,
+    )
+    .join("");
+
+  formulaForm.innerHTML = `
+    <div class="formula-inputs">${fields}</div>
+    <div class="formula-actions">
+      <button class="formula-button" type="submit">Solve formula</button>
+      <button class="formula-button secondary" type="reset">Clear</button>
+    </div>`;
+  formulaResult.textContent = "Enter values, then solve the formula.";
+}
+
+function solveFormula(event) {
+  event.preventDefault();
+  const formula = formulaDefinitions[formulaSelect.value];
+  const values = Object.fromEntries(
+    formula.fields.map((field) => {
+      const inputValue = formulaForm.elements[field.name].value.trim();
+      return [field.name, inputValue === "" ? Number.NaN : Number(inputValue)];
+    }),
+  );
+  const hasInvalidValue = Object.values(values).some((value) => !Number.isFinite(value));
+  formulaResult.textContent = hasInvalidValue
+    ? "Please fill in every field with a valid number."
+    : formula.solve(values);
+}
+
+if (formulaSelect && formulaForm && formulaResult) {
+  formulaSelect.addEventListener("change", renderFormulaFields);
+  formulaForm.addEventListener("submit", solveFormula);
+  formulaForm.addEventListener("reset", () => {
+    window.setTimeout(() => {
+      formulaResult.textContent = "Enter values, then solve the formula.";
+    }, 0);
+  });
+  renderFormulaFields();
+}
